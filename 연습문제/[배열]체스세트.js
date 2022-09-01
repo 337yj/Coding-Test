@@ -16,7 +16,8 @@ function answer(chess){
     let count = 0;
     for(let i=0; i<chess.length; i++){
         result[count++] = refer[i] - chess[i]
-    }
+    } // count++ 은 result 의 배열 index값을 설정해줘야 하기 때문에 필요
+      // 안해주면 값만 나타내서 결국 마지막 7만 반환해줌
     
 
     return result;
