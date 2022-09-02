@@ -39,7 +39,7 @@ let bubbleSort_3 = function (arr) { // 배열을 매개변수로 받음
             swap(arr, j, j + 1);
             swapped = true;
         }
-        if(swapped) break;  // 안쪽 for문 다하고 나왔을 때 swap 한번도 안했으면 중단해라
+        if(!swapped) break;  // 안쪽 for문 다하고 나왔을 때 swap 한번도 안했으면 중단해라
         }
     }
     };
