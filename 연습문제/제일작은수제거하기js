@@ -1,0 +1,39 @@
+function solution(arr) {
+    arr.splice(arr.indexOf(Math.min(...arr)),1);
+    return arr.length ? arr : [-1]; 
+}
+
+----------------------------------------------------------
+
+
+function solution(arr) {
+    var answer = [];
+    
+    if (arr.length <= 1) {
+        return [-1];
+    } else {
+        arr.splice(arr.indexOf(Math.min(arr)),1);
+        answer = arr;
+    }
+    
+    return answer;
+}
+
+----------------------------------------------------------py
+
+def solution(arr):
+    answer = []
+    
+    minVal = min(arr)
+    arr.remove(minVal)
+    
+    if not arr:
+        arr.insert(0,-1)
+    
+    return arr
+    
+----------------------------------------------------------py
+    
+def rm_small(mylist):
+    return [i for i in mylist if i > min(mylist)]
+    
