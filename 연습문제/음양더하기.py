@@ -13,7 +13,7 @@ def solution(absolutes, signs):
             answer -= absolutes[i]
     return answer
   
-  
+
 -----------------------------------------------------------------
 
 def solution(absolutes, signs):
