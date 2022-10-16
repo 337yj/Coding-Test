@@ -25,3 +25,17 @@ function solution(n, lost, reserve) {
     // 체육복이 한개 이상인 학생들의 수
     return clothes.filter(c => c > 0).length;
 }
+
+-------------------------------------------------------py
+
+def solution(n, lost, reserve):
+    _reserve = [r for r in reserve if r not in lost]
+    _lost = [l for l in lost if l not in reserve]
+    for r in _reserve:
+        f = r - 1
+        b = r + 1
+        if f in _lost:
+            _lost.remove(f)
+        elif b in _lost:
+            _lost.remove(b)
+    return n - len(_lost)
