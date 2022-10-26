@@ -32,6 +32,6 @@ const result = input.reduce(function add(sum, cur){
 const avg = result / input.length
 console.log(avg)
 
-const st = input.sort((a,b) => {return a-b});
+const st = input.sort((a,b) => a-b);
 const median = st[2]
 console.log(median)
