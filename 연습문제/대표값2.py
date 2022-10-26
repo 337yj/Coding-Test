@@ -17,3 +17,21 @@ median = sorted(numbers)[2]
 # 평균과 중앙값을 출력 형식에 맞게 출력함
 print(average)
 print(median)
+
+
+------------------------------------------------------------------------------js
+
+let input = require('fs').readFileSync('예제.txt').toString().trim().split('\n').map((el) => Number(el));
+
+console.log(input) 
+
+const result = input.reduce(function add(sum, cur){
+    return sum + cur
+},0);
+
+const avg = result / input.length
+console.log(avg)
+
+const st = input.sort((a,b) => {return a-b});
+const median = st[2]
+console.log(median)
