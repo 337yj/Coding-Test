@@ -1,14 +1,16 @@
-const input = require("fs").readFileSync("/dev/stdin").toString().trim().split("\n");
-const n = +input[0];
-const distance = input[1].split(" ").map(v => BigInt(v));
-const price = input[2].split(" ").map(v => BigInt(v));
+let cost = BigInt(0);
 
-let curPrice = price[0];
-let cost = 0n;
+const distance = [2, 3, 1].map((v) => BigInt(v)); // distance: 각 도시 사이의 도로 길이.
+// 2 3 1
+let price = [5, 2, 4, 1].map((v) => BigInt(v)); // price : 도시마다 주유소의 리터당 가격
+//  5 2 4 1
 
-for (let i=0; i<n-1; i++) {
-    cost += curPrice * distance[i];
-    if (curPrice > price[i+1]) curPrice = price[i+1];
+let lowestPrice = price[0]; // 처음에는 맨 처음 값을 최저가를 지정
+for (let i = 0; i < price.length - 1; i++) {
+  if (lowestPrice > price[i]) {
+    //  현재 값이 최저가보다 작다면 최저가를 갱신해준다.
+    lowestPrice = price[i];
+  }
+  cost += lowestPrice * distance[i];
 }
-
-console.log(String(cost));
+console.log(cost.toString());
