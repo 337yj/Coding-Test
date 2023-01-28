@@ -10,11 +10,10 @@ for(let i =0; i<arr.length; i++){
 }
 console.log(total);
 
-// ------------------------------------------------------------------------------
+// --------------------------------------------------------------------ㄴㅇㄹ----------
 
 const N = +input.shift();
-
-const arr = input[0].split(' ').map(Number).sort((a,b) => a-b);
+.map(Number).sort((a,b) => a-b);
 
 let totalr = 0;
 for(let i=0; i<N; i++) {
