@@ -8,7 +8,10 @@ function solution(arr) {
     function DFS(L, sum){
         if(flag) return;
         if(L===n){
-            if((total-sum)===sum) answer = "YES";
+            if((total-sum)===sum){
+                answer = "YES";
+                flag = 1; // 참이 나왔을 경우 바로 끝내기
+            }
         }
         else{
             DFS(L+1, sum+arr[L]);
