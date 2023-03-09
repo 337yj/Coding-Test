@@ -1,17 +1,16 @@
 function solution(priorities, location) {
-    let answer = [];
-    let waitList = priorities.map((x, i) => [x, i]);
-    
-    while (waitList.length) {
-        const front = waitList.shift();
-        if (front[0] >= Math.max(...waitList.map(x => x[0]))) {
-            answer.push(front[1]);
-            if (front[1] === location)
-                break;
+    const documents = Array.from({ length: priorities.length }, (_, i) => i);
+    let cnt = 0;
+    while (priorities.length) {
+        const priority = priorities.shift();
+        const document = documents.shift();
+        const max = Math.max(...priorities);
+        if (max > priority) {
+            priorities.push(priority);
+            documents.push(document);
         } else {
-            waitList.push(front);
+            cnt++;
+            if (document === location) return cnt;
         }
     }
-    
-    return answer.indexOf(location) + 1;
 }
