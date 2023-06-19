@@ -6,7 +6,7 @@ const input = require("fs")
 
 let n = Number(input[0].split(" ")[0]);
 let k = Number(input[0].split(" ")[1]);
-let ch = new Array(100001).fill(0);
+let ch = Array.from({ length: 100001 }, () => 0);
 
 let queue = [];
 queue.push(n);
