@@ -1,26 +1,35 @@
-let input = require("fs").readFileSync("/dev/stdin").toString().split("\n");
-let node = Number(input[0]);
-let edge_num = Number(input[1]);
-let graph = [...new Array(node + 1)].map(() => []);
-let visited = [...new Array(node + 1)].fill(0);
-let ans = 0;
-// 그래프 생성
-for (let i = 0; i < edge_num; i++) {
-  let start = Number(input[i + 2].split(" ")[0]);
-  let end = Number(input[i + 2].split(" ")[1]);
-  graph[start].push(end);
-  graph[end].push(start);
+const input = require("fs")
+  .readFileSync("예제.txt")
+  .toString()
+  .trim()
+  .split("\n");
+
+const N = +input.shift(); // 컴퓨터의 수
+const M = +input.shift(); // 네트워크 상에서 연결되어 있는 컴퓨터 쌍의 수
+
+const graph = Array.from(Array(N + 1), () => []); // 인접 리스트로 그래프 표현
+const ch = Array.from(Array(N + 1), () => 0); // 방문 여부를 체크하기 위한 배열
+ch[1] = 1; // 1번 컴퓨터는 웜 바이러스에 걸렸음을 표시
+let count = 0; // 웜 바이러스에 걸리게 되는 컴퓨터의 수를 세는 변수
+
+for (let i = 0; i < M; i++) {
+  const [first, second] = input[i].split(" ").map(Number);
+  graph[first].push(second); // 양방향으로 연결된 간선을 그래프에 추가
+  graph[second].push(first);
 }
-// 1번노드 방문처리해주고 dfs 시작
-visited[1] = 1;
-function dfs(start) {
-  for (let end of graph[start]) {
-    if (!visited[end]) {
-      visited[end] = 1;
-      ans++;
-      dfs(end);
+
+const dfs = (start) => {
+  for (let i of graph[start]) {
+    // start와 연결된 정점들을 순회
+    if (ch[i] === 0) {
+      // 아직 방문하지 않은 정점일 경우
+      ch[i] = 1; // 방문 처리
+      count++; // 웜 바이러스에 걸리게 되는 컴퓨터 수 증가
+      dfs(i); // 해당 정점으로 DFS 호출
     }
   }
-}
-dfs(1);
-console.log(ans);
+};
+
+dfs(1); // 1번 컴퓨터를 시작으로 DFS 수행
+
+console.log(count); // 웜 바이러스에 걸리게 되는 컴퓨터 수 출력
